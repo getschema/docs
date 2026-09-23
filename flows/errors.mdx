@@ -1,0 +1,60 @@
+---
+title: "Errors and recovery"
+description: "Read Flow errors, choose a recovery step, and trace failed calls."
+---
+
+Flows use a shared error format across websites. An error describes what failed, whether a retry may help, and which request to investigate.
+
+<Note>
+  The format below is illustrated in the platform preview. Confirm the response contract supplied with your access before building against it.
+</Note>
+
+## Example error
+
+```json
+{
+  "error": {
+    "code": "conflict",
+    "message": "20:00 was just booked",
+    "flow": "OpenTable Flow",
+    "function": "book",
+    "retryable": true,
+    "request_id": "req_example",
+    "details": {
+      "alternatives": ["20:15", "20:45"]
+    }
+  }
+}
+```
+
+| Field | Meaning |
+| --- | --- |
+| `code` | A category your application can use to choose a recovery step. |
+| `message` | A description of the failure. |
+| `flow` | The Flow involved. |
+| `function` | The function that failed. |
+| `retryable` | Whether retrying may help after addressing the cause. |
+| `request_id` | An identifier for finding the call in logs. |
+| `details` | Optional context, such as alternative options. |
+
+## Error codes
+
+| Code | What happened | What to do |
+| --- | --- | --- |
+| `invalid_input` | Arguments did not match the function's accepted inputs. | Correct the inputs before retrying. |
+| `auth_required` | The website needs a signed-in session. | Connect or refresh the account. |
+| `not_found` | The requested item does not exist on the site. | Check the identifier or search again. |
+| `conflict` | The site's state changed, such as an option becoming unavailable. | Refresh the options and choose an available result. |
+| `rate_limited` | The site is throttling requests. | Wait for the supplied delay, when present, before retrying. |
+| `flow_adapting` | The Flow is updating after a website change. | Wait before trying again. |
+| `upstream_unavailable` | The website is down or unreachable. | Try again later if the error permits a retry. |
+
+## Retry with the failure in mind
+
+Check the code, `retryable`, and any details together. Invalid input or missing sign-in needs a correction first. A conflict may need new arguments, even when a retry is allowed.
+
+Use a bounded retry policy for temporary failures. Before repeating an action that changes something on a site, check whether the original action completed.
+
+## Investigate a failure
+
+Find the call in your Schema logs using `request_id`. If you need help, email [support@getschema.app](mailto:support@getschema.app) with the request ID, Flow, function, and a short description of the problem. Do not include credentials.

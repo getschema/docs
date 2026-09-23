@@ -1,0 +1,36 @@
+---
+title: "Schema for Flows"
+description: "Give your agents callable access to websites and structured results."
+---
+
+Schema for Flows is for developers and agents that need to work with websites. A Flow describes a site's capabilities, exposes functions your agent can call, and returns typed results.
+
+## What is a Flow?
+
+A Flow brings together:
+
+- **Context:** what the site does and when to use it.
+- **Functions:** the actions you can request and the inputs they accept.
+- **Information:** the data you can read and the shape of the result.
+
+Flows run against live websites and adapt as those sites change. Inputs can be structured arguments or plain-English requests, depending on the function. Outputs are typed.
+
+## A typical workflow
+
+1. Choose the Flow for the website you need.
+2. Read its context and function definitions.
+3. Supply the required arguments and, where needed, connect a signed-in account.
+4. Call a function.
+5. Use the returned data, or handle the shared error response.
+
+For example, a flight workflow might search for itineraries, inspect a selected fare, and track its price. The available operations depend on the Flow.
+
+## Access and availability
+
+Schema for Flows is on the waitlist. [Request access](https://form.typeform.com/to/exWUquA1).
+
+<Note>
+  The [public platform preview](https://getschema.app/platform) uses sample data. Its function names, SDK snippets, and responses illustrate the product; they are not a published API contract.
+</Note>
+
+Continue with the [quickstart](/flows/quickstart).

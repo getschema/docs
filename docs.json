@@ -21,12 +21,29 @@
         ]
       },
       {
+        "group": "Schema for Mac",
+        "pages": [
+          "mac/overview",
+          "mac/getting-started",
+          "mac/using-schema",
+          "mac/accounts",
+          "mac/troubleshooting"
+        ]
+      },
+      {
         "group": "Schema for Web",
         "pages": []
       },
       {
         "group": "Schema for Flows",
-        "pages": []
+        "pages": [
+          "flows/overview",
+          "flows/quickstart",
+          "flows/functions",
+          "flows/sessions",
+          "flows/integrations",
+          "flows/errors"
+        ]
       }
     ],
     "global": {
