@@ -19,6 +19,14 @@
           "index",
           "quickstart"
         ]
+      },
+      {
+        "group": "Schema for Web",
+        "pages": []
+      },
+      {
+        "group": "Schema for Flows",
+        "pages": []
       }
     ],
     "global": {
