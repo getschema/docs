@@ -1,0 +1,38 @@
+---
+title: "Agent integrations"
+description: "Choose functions, expose tools, and handle results in your agent."
+---
+
+You can use Flows with a tool-calling agent or call functions from your own application.
+
+<Note>
+  The SDK snippets and endpoints in the public platform are illustrative. Use the integration package, endpoint, and authentication details supplied with your access.
+</Note>
+
+## Connect a tool-calling agent
+
+1. Choose the Flows relevant to the user's task.
+2. Read each Flow's context and available functions.
+3. Expose the selected functions as tools with their names, descriptions, and argument schemas.
+4. Route a requested tool call to the corresponding Flow function.
+5. Return the typed result or error to your agent.
+
+Keep the Flow's context available so the agent knows when a tool is appropriate. Preserve its argument definitions rather than guessing field types.
+
+## Call from your application
+
+A direct integration follows the same pattern: choose a function, provide its accepted arguments, and process its result.
+
+Keep Schema API credentials in your application's protected configuration. Use the credentials and account setup supplied for your environment.
+
+## Handle actions deliberately
+
+Decide which functions your agent may call and when it should ask the user to choose an option or approve an action. For a booking workflow, for example, present the selected option and its current terms before proceeding.
+
+A retryable failure does not by itself establish that repeating a purchase or other state-changing action is safe. Check the outcome before submitting the action again.
+
+## Make failures traceable
+
+Keep the returned request ID with your application's record of a failed call. Use it to find the corresponding entry in Schema logs or when contacting support.
+
+See [functions and results](/flows/functions), [sessions](/flows/sessions), and [errors](/flows/errors).

@@ -1,0 +1,41 @@
+---
+title: "Sessions and sign-in"
+description: "Understand account access for Flows that require a signed-in website."
+---
+
+Some Flows work with public information. Others need access to a signed-in account on the target website.
+
+## API access and website access
+
+These serve different purposes:
+
+- **Schema API credentials** authenticate your integration to Schema.
+- **A website session** gives a Flow access to the account on the site it is using.
+
+An API credential alone does not sign you in to another website.
+
+## How sessions work
+
+For websites that require authentication, Schema for Flows caches sessions on Schema's servers and loads them when needed. A Flow can reuse an existing session rather than requiring a separate sign-in step in every workflow.
+
+## Manage access
+
+The Sessions dashboard is where you review active sessions, add or update credentials, and revoke access.
+
+The [Sessions preview](https://getschema.app/platform/sessions) shows this experience with sample data. Once you receive access, use the dashboard and account setup instructions provided for your environment.
+
+## When sign-in is required
+
+If a call returns `auth_required`:
+
+1. Check that you connected the intended account for that website.
+2. Update its credentials or sign in again as needed.
+3. Confirm access before retrying the call.
+
+Do not keep retrying the same request while the account still needs attention.
+
+## Revoke access
+
+Revoke a session when you no longer want a Flow to use that account. Calls that depend on signed-in access may require you to connect the account again.
+
+For recovery guidance, see [errors](/flows/errors).

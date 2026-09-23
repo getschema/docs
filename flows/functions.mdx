@@ -1,0 +1,60 @@
+---
+title: "Functions and results"
+description: "Understand function inputs, typed outputs, and multi-step workflows."
+---
+
+Each Flow exposes a set of functions. Read a function's description, input definition, and return type before using it.
+
+## Inputs
+
+A function may accept structured fields or a plain-English request. Use the form specified by that function.
+
+For structured inputs, check:
+
+- Which fields are required.
+- The type and format of each value.
+- Which optional fields narrow the request.
+- Whether an argument must come from a previous result.
+
+Do not assume two sites use the same names or accept the same arguments.
+
+## Typed results
+
+Results describe the returned data in a predictable structure. Your agent can use individual fields without extracting values from a page.
+
+The following example illustrates a flight search result. It is not a guaranteed response schema:
+
+```json
+[
+  {
+    "id": "itn_example",
+    "flight": "Example 916",
+    "departs": "07:05",
+    "arrives": "15:37",
+    "stops": 0,
+    "price": {
+      "amount": 187,
+      "currency": "USD"
+    }
+  }
+]
+```
+
+Use the actual return definition supplied by your Flow. In a price result, for example, keep the currency with the amount.
+
+## Connect multiple calls
+
+A workflow often starts with a search and continues with a selected result:
+
+1. Search for available options.
+2. Read the returned identifiers and details.
+3. Choose an option using the user's constraints.
+4. Pass its identifier to the next supported function.
+
+Use identifiers returned by the live call. Example identifiers in documentation are only for illustration.
+
+## Live data can change
+
+Availability, prices, and other site data may change between calls. Handle a changed or missing result instead of assuming the previous result is still available.
+
+Flows also evolve as websites change. Review the available function definitions when integrating or updating your workflow. See [errors](/flows/errors) for failures related to changed site state.
